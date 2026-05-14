@@ -11,7 +11,7 @@
     "watch": "webpack --watch"
   },
   "license": "Apache-2.0",
-  "author": "Zena Hirsch <zena@vimeo.com>",
+  "author": "Zena Hirsch <hirsch.zena@gmail.com>",
   "keywords": [
     "zendesk",
     "tickets",
