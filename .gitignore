@@ -7,6 +7,7 @@ dist/assets/main.js
 dist/assets/main.js.map
 dist/translations/
 dist/.zat
+dist/zcli.apps.config.json
 dist/tmp/
 *.sublime-*
 .DS_Store
