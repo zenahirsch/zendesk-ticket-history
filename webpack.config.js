@@ -21,7 +21,7 @@ var externalAssets = {
 module.exports = {
   progress: true,
   entry: {
-    app: ['./src/javascripts/index.js', './src/stylesheets/app.scss']
+    app: ['./src/javascripts/index.js', './dist/tmp/app.css']
   },
   output: {
     path: './dist/assets',
@@ -38,8 +38,8 @@ module.exports = {
     ],
     loaders: [
       {
-        test: /\.scss$/,
-        loader: extractStyles.extract("style", ["css?sourceMap", "sass?sourceMap"])
+        test: /\.css$/,
+        loader: extractStyles.extract("style", "css?sourceMap")
       },
       {
         test: /\.json$/,

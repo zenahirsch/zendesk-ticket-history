@@ -7,8 +7,8 @@
     "url": "https://github.com/zenahirsch/zendesk-ticket-history"
   },
   "scripts": {
-    "build": "webpack -p",
-    "watch": "webpack --watch"
+    "build": "sass src/stylesheets/app.scss:dist/tmp/app.css --no-source-map && webpack -p",
+    "watch": "sass src/stylesheets/app.scss:dist/tmp/app.css --no-source-map && sass --watch src/stylesheets/app.scss:dist/tmp/app.css --no-source-map & webpack --watch"
   },
   "license": "Apache-2.0",
   "author": "Zena Hirsch <hirsch.zena@gmail.com>",
@@ -40,8 +40,7 @@
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-webpack": "^3.0.5",
     "loader-utils": "^0.2.15",
-    "node-sass": "^4.0.0",
-    "sass-loader": "^3.1.2",
+    "sass": "^1.94.2",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13"
   },
