@@ -3,7 +3,7 @@
     "name": "Ticket History",
     "installation_instructions": "Installation is simple. Simply search for the Ticket History app in the Zendesk Apps Marketplace and click Install.",
     "short_description": "Displays recent tickets in the ticket sidebar.",
-    "long_description": "Displays a user's recent tickets in the ticket sidebar, along with the status, creation date, and currently assigned user. Clicking on a particular ticket will open up a preview of the requester's original comment, and also allows the user to switch directly to that ticket in the agent interface.",
+    "long_description": "### Ticket History \n\nDisplays a user's recent tickets in the ticket sidebar, along with the status, creation date, and currently assigned user. Clicking on a particular ticket will open up a preview of the requester's original comment, and also allows the user to switch directly to that ticket in the agent interface.\n\n### Data Privacy Notice\n\nThis app accesses ticket data and user data directly from your Zendesk account via the Zendesk Apps Framework. Data accessed includes:\n\n* Ticket subject, status, creation date, type, and description\n* Ticket satisfaction ratings\n* Requester and assignee names\n\nThis data is used solely to display the ticket history list and ticket previews within the sidebar. No data is collected, transmitted to third parties, or stored outside of your Zendesk instance. All data is loaded on demand and held only in memory for the duration of the session.",
     "parameters": {
       "list_length": {
         "label": "List length",
