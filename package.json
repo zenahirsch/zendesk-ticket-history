@@ -10,7 +10,7 @@
     "build": "sass src/stylesheets/app.scss:dist/tmp/app.css --no-source-map && webpack -p",
     "watch": "sass src/stylesheets/app.scss:dist/tmp/app.css --no-source-map && sass --watch src/stylesheets/app.scss:dist/tmp/app.css --no-source-map & webpack --watch"
   },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "author": "Zena Hirsch <hirsch.zena@gmail.com>",
   "keywords": [
     "zendesk",
