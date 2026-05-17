@@ -10,10 +10,10 @@ class TicketSidebar {
 		this._context = data.context;
 		this.requester = null;
 		this.showing_all = false;
-		this.list_length = this._metadata.settings.list_length;
-		this.show_satisfaction = this._metadata.settings.show_satisfaction;
-		this.show_preview = this._metadata.settings.show_preview;
-		this.exclude_archived = this._metadata.settings.exclude_archived;
+		this.list_length = parseInt(this._metadata.settings.list_length, 10);
+		this.show_satisfaction = this._metadata.settings.show_satisfaction === 'true';
+		this.show_preview = this._metadata.settings.show_preview === 'true';
+		this.exclude_archived = this._metadata.settings.exclude_archived === 'true';
 
 		this.storage = new Storage(this._metadata.installationId);
 		this.view = new View({ afterRender: () => {
