@@ -144,25 +144,16 @@ class TicketSidebar {
 					status: ticket.status,
 					current_ticket: false,
 					satisfaction_score: 'unknown',
-					satisfaction_symbol: ''
+					satisfaction_is_good: false,
+					satisfaction_is_bad: false,
+					satisfaction_is_offered: false
 				};
 
 				if (ticket.satisfaction_rating && ticket.satisfaction_rating.score) {
 					formatted_ticket.satisfaction_score = ticket.satisfaction_rating.score;
-
-					switch (ticket.satisfaction_rating.score) {
-						case 'good':
-							formatted_ticket.satisfaction_symbol = '<span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true">';
-							break;
-						case 'bad':
-							formatted_ticket.satisfaction_symbol = '<span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true">';
-							break;
-						case 'offered':
-							formatted_ticket.satisfaction_symbol = '<span class="glyphicon glyphicon-time" style="opacity:0.5;" aria-hidden="true">';
-							break;
-						default:
-							formatted_ticket.satisfaction_symbol = '';
-					}
+					formatted_ticket.satisfaction_is_good = ticket.satisfaction_rating.score === 'good';
+					formatted_ticket.satisfaction_is_bad = ticket.satisfaction_rating.score === 'bad';
+					formatted_ticket.satisfaction_is_offered = ticket.satisfaction_rating.score === 'offered';
 				}
 
 				formatted_ticket.current_ticket = (ticket.id === curr_ticket_id);
