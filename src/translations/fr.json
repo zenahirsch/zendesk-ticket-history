@@ -42,7 +42,7 @@
 
   "unassigned": "non affecté",
 
-  "tickets_from": "{{count}} tickets(s) de {{{requester_name}}}",
+  "tickets_from": "{{count}} tickets(s) de {{requester_name}}",
 
   "show_all": "Afficher tout"
 }

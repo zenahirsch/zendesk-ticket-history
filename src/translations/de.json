@@ -42,7 +42,7 @@
 
   "unassigned": "Nicht zugewiesen",
 
-  "tickets_from": "{{count}} ticket(s) von  {{{requester_name}}}",
+  "tickets_from": "{{count}} ticket(s) von  {{requester_name}}",
 
   "show_all": "Zeige alles"
 }

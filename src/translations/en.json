@@ -42,7 +42,7 @@
 
   "unassigned": "unassigned",
 
-  "tickets_from": "{{count}} ticket(s) from {{{requester_name}}}",
+  "tickets_from": "{{count}} ticket(s) from {{requester_name}}",
 
   "show_all": "Show all"
 }
