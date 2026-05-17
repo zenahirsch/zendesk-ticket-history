@@ -1,5 +1,6 @@
 import View from 'view';
 import Storage from 'storage';
+import { parseBool } from './settings';
 
 const MAX_SUBJECT_LENGTH = 35;
 
@@ -11,9 +12,9 @@ class TicketSidebar {
 		this.requester = null;
 		this.showing_all = false;
 		this.list_length = parseInt(this._metadata.settings.list_length, 10);
-		this.show_satisfaction = this._metadata.settings.show_satisfaction === 'true';
-		this.show_preview = this._metadata.settings.show_preview === 'true';
-		this.exclude_archived = this._metadata.settings.exclude_archived === 'true';
+		this.show_satisfaction = parseBool(this._metadata.settings.show_satisfaction);
+		this.show_preview = parseBool(this._metadata.settings.show_preview);
+		this.exclude_archived = parseBool(this._metadata.settings.exclude_archived);
 
 		this.storage = new Storage(this._metadata.installationId);
 		this.view = new View({ afterRender: () => {
