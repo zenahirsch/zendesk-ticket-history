@@ -89,7 +89,7 @@ module.exports = {
     moment: 'moment',
     zendesk_app_framework_sdk: 'ZAFClient'
   },
-  devtool: '#eval',
+  devtool: false,
   plugins: [
     extractStyles,
     new HtmlWebpackPlugin({
