@@ -13,7 +13,7 @@ class Modal {
 
 		this.storage = new Storage(this._metadata.installationId);
 		this.view = new View({ afterRender: () => {
-			let newHeight = Math.min($('html').height(), MAX_HEIGHT);
+			let newHeight = Math.min(document.documentElement.scrollHeight, MAX_HEIGHT);
 			this.client.invoke('resize', { height: newHeight, width: WIDTH });
 		}});
 
@@ -34,7 +34,7 @@ class Modal {
 	}
 
 	attachEvents() {
-		$('#open-ticket').click(() => {
+		document.getElementById('open-ticket').addEventListener('click', () => {
 			this.client.invoke('routeTo', 'ticket', this.ticket_id);
 			this.client.invoke('destroy');
 		});

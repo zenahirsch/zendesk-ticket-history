@@ -19,9 +19,10 @@ class TicketSidebar {
 
 		this.storage = new Storage(this._metadata.installationId);
 		this.view = new View({ afterRender: () => {
-			let docHeight = $('html').height();
-			let docWidth = $('html').width();
-			$('.container-fluid').css('font-size', docWidth / 30 + 'px');
+			let docHeight = document.documentElement.scrollHeight;
+			let docWidth = document.documentElement.clientWidth;
+			const container = document.querySelector('.container-fluid');
+			if (container) container.style.fontSize = docWidth / 30 + 'px';
 			this.client.invoke('resize', { height: docHeight });
 		}});
 
@@ -40,34 +41,39 @@ class TicketSidebar {
 	}
 
 	attachEvents() {
-		$('.ticket-link').not('.active').click((e) => {
-			const ticketId = $(e.currentTarget).data('ticket-id');
+		document.querySelectorAll('.ticket-link:not(.active)').forEach(el => {
+			el.addEventListener('click', (e) => {
+				const ticketId = e.currentTarget.dataset.ticketId;
 
-			e.preventDefault();
+				e.preventDefault();
 
-			if (this.show_preview) {
-				return this.client.invoke('instances.create', {
-					location: 'modal',
-					url: `assets/index.html?ticket_id=${ticketId}`
-				});
-			}
+				if (this.show_preview) {
+					return this.client.invoke('instances.create', {
+						location: 'modal',
+						url: `assets/index.html?ticket_id=${ticketId}`
+					});
+				}
 
-			return this.client.invoke('routeTo', 'ticket', ticketId);
-		});
-
-		$('#show_all').click((e) => {
-			e.preventDefault();
-
-			this.showing_all = true;
-
-			this.getRecentTickets().then(data => {
-				this.view.switchTo('loading');
-				this.renderMain(data, true);
-			}).catch(err => {
-				console.error(err);
-				this.renderError(err);
+				return this.client.invoke('routeTo', 'ticket', ticketId);
 			});
 		});
+
+		const showAllBtn = document.getElementById('show_all');
+		if (showAllBtn) {
+			showAllBtn.addEventListener('click', (e) => {
+				e.preventDefault();
+
+				this.showing_all = true;
+
+				this.getRecentTickets().then(data => {
+					this.view.switchTo('loading');
+					this.renderMain(data, true);
+				}).catch(err => {
+					console.error(err);
+					this.renderError(err);
+				});
+			});
+		}
 	}
 
 	getCurrentUser() {
@@ -95,11 +101,6 @@ class TicketSidebar {
 			this.sortTickets(template_data.recent_tickets, 'created_at', 'desc')
 			this.view.switchTo('main', template_data);
 			this.attachEvents();
-
-			$('[data-toggle="tooltip"]').tooltip({
-				template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner small"></div></div>',
-				delay: { show: 500, hide: 0 }
-			});
 		}).catch(err => {
 			console.error(err);
 			this.renderError(err);

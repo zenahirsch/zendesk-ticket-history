@@ -16,9 +16,6 @@
   },
   "globals": {
     "Templates": true,
-    "$": true,
-    "jQuery": true,
-    "Handlebars": true,
-    "_": true
+    "Handlebars": true
   }
 }
