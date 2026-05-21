@@ -43,6 +43,7 @@
     "webpack-cli": "^7.0.2"
   },
   "dependencies": {
+    "bootstrap": "^3.4.1",
     "dayjs": "^1.11.20"
   }
 }

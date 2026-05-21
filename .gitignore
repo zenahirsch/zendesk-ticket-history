@@ -5,6 +5,8 @@ dist/assets/main.css
 dist/assets/main.css.map
 dist/assets/main.js
 dist/assets/main.js.map
+dist/assets/main.js.LICENSE.txt
+dist/assets/fonts/
 dist/translations/
 dist/.zat
 dist/zcli.apps.config.json

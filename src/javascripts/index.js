@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import ZAFClient from 'zendesk_app_framework_sdk';
 import I18n from 'i18n';
 import dayjs from 'dayjs';

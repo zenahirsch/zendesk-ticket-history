@@ -4,11 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const externalAssets = {
-  css: [
-    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
-  ],
+  css: [],
   js: [
-    'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.2/handlebars.runtime.min.js',
     'https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js',
   ]
 };
@@ -27,6 +24,13 @@ module.exports = {
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.(woff2?|ttf|eot|svg)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]'
+        }
       },
       {
         test: /src\/translations\/.*\.json/,
@@ -60,12 +64,12 @@ module.exports = {
   resolve: {
     modules: ['node_modules', './lib/javascripts'],
     alias: {
+      'handlebars$': require.resolve('handlebars/dist/handlebars'),
       'app_manifest': path.join(__dirname, './dist/manifest.json')
     },
     extensions: ['.js']
   },
   externals: {
-    handlebars: 'Handlebars',
     zendesk_app_framework_sdk: 'ZAFClient'
   },
   plugins: [
