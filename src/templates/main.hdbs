@@ -1,14 +1,12 @@
 <div class="panel panel-default recent-tickets-panel">
 	<ul id="recent-tickets" class="list-group">
-		{{log show_satisfaction}}
 		{{#each recent_tickets}}
-			{{log ../show_satisfaction}}
 			<a href="#" class="list-group-item ticket-link {{#if this.current_ticket}}active disabled{{/if}}" data-ticket-id="{{this.id}}">
 				{{#if this.truncated_subject}}
 					<div class="list-group-item-heading" style="white-space:nowrap;">
-						<strong>#{{this.id}}</strong>&nbsp;&nbsp;<span data-toggle="tooltip" data-placement="auto" title="{{this.subject}}">{{this.truncated_subject}}</span>
+						<strong>#{{this.id}}</strong>&nbsp;&nbsp;<span title="{{this.subject}}">{{this.truncated_subject}}</span>
 						{{#if ../show_satisfaction}}
-							&nbsp;{{#if this.satisfaction_is_good}}<span class="satisfaction_symbol good" data-toggle="tooltip" data-placement="auto" title="good"><span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></span>{{else if this.satisfaction_is_bad}}<span class="satisfaction_symbol bad" data-toggle="tooltip" data-placement="auto" title="bad"><span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></span>{{else if this.satisfaction_is_offered}}<span class="satisfaction_symbol offered" data-toggle="tooltip" data-placement="auto" title="offered"><span class="glyphicon glyphicon-time" style="opacity:0.5;" aria-hidden="true"></span></span>{{/if}}
+							&nbsp;{{#if this.satisfaction_is_good}}<span class="satisfaction_symbol good" title="good"><span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></span>{{else if this.satisfaction_is_bad}}<span class="satisfaction_symbol bad" title="bad"><span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></span>{{else if this.satisfaction_is_offered}}<span class="satisfaction_symbol offered" title="offered"><span class="glyphicon glyphicon-time" style="opacity:0.5;" aria-hidden="true"></span></span>{{/if}}
 						{{/if}}
 					</div>
 				{{else}}
@@ -18,7 +16,7 @@
 								<div class="col-xs-12">
 									<strong>#{{this.id}}</strong>{{#if this.subject}}&nbsp;&nbsp;{{this.subject}}{{/if}}
 									{{#if ../show_satisfaction}}
-										&nbsp;{{#if this.satisfaction_is_good}}<span class="satisfaction_symbol good" data-toggle="tooltip" data-placement="auto" title="good"><span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></span>{{else if this.satisfaction_is_bad}}<span class="satisfaction_symbol bad" data-toggle="tooltip" data-placement="auto" title="bad"><span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></span>{{else if this.satisfaction_is_offered}}<span class="satisfaction_symbol offered" data-toggle="tooltip" data-placement="auto" title="offered"><span class="glyphicon glyphicon-time" style="opacity:0.5;" aria-hidden="true"></span></span>{{/if}}
+										&nbsp;{{#if this.satisfaction_is_good}}<span class="satisfaction_symbol good" title="good"><span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></span>{{else if this.satisfaction_is_bad}}<span class="satisfaction_symbol bad" title="bad"><span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></span>{{else if this.satisfaction_is_offered}}<span class="satisfaction_symbol offered" title="offered"><span class="glyphicon glyphicon-time" style="opacity:0.5;" aria-hidden="true"></span></span>{{/if}}
 									{{/if}}
 								</div>
 							</div>
@@ -28,11 +26,11 @@
 				<div class="list-group-item-text">
 					<div class="container-fluid">
 						<div class="row" style="white-space:nowrap;">
-							<div class="text-capitalize col-xs-3"> 
+							<div class="text-capitalize col-xs-3">
 								<span class="label label-{{this.status}}">{{t this.status}}</span>
 							</div>
 							<div class="col-xs-5">
-								<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;<span data-toggle="tooltip" data-placement="auto" title="{{this.created_at_static}}">{{this.created_at_relative}}</span>
+								<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;<span title="{{this.created_at_static}}">{{this.created_at_relative}}</span>
 							</div>
 							<div class="col-xs-4" style="overflow:hidden;">
 								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;{{#if this.assignee_name}}{{this.assignee_name}}{{else}}<span class="text-capitalize">{{t "unassigned"}}</span>{{/if}}
