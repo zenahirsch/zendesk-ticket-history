@@ -79,7 +79,7 @@ module.exports = {
   resolve: {
     modules: ['node_modules', './lib/javascripts'],
     alias: {
-      'handlebars$': require.resolve('handlebars/dist/handlebars'),
+      'handlebars$': require.resolve('handlebars/runtime'),
       'app_manifest': path.join(__dirname, './dist/manifest.json')
     },
     extensions: ['.js']
