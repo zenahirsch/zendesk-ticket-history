@@ -1,11 +1,9 @@
 /* eslint-env node */
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var extractStyles = new ExtractTextPlugin('main.css');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var externalAssets = {
+const externalAssets = {
   css: [
     'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
   ],
@@ -16,37 +14,25 @@ var externalAssets = {
 };
 
 module.exports = {
-  progress: true,
+  mode: 'production',
   entry: {
     app: ['./src/javascripts/index.js', './dist/tmp/app.css']
   },
   output: {
-    path: './dist/assets',
+    path: path.resolve(__dirname, 'dist/assets'),
     filename: 'main.js',
-    sourceMapFilename: '[file].map'
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules|lib\/javascripts\/sanitize-html\.js/,
-        loader: 'eslint-loader'
-      }
-    ],
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
-        loader: extractStyles.extract("style", "css?sourceMap")
-      },
-      {
-        test: /\.json$/,
-        exclude: /src\/translations\/.*\.json/,
-        loader: 'json-loader'
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /src\/translations\/.*\.json/,
+        type: 'javascript/auto',
         loader: 'translations-loader',
-        query: {
+        options: {
           runtime: 'handlebars'
         }
       },
@@ -54,14 +40,14 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query: {
-          presets: ['es2015']
+        options: {
+          presets: ['@babel/preset-env']
         }
       },
       {
         test: /\.(handlebars|hd?bs)$/,
         loader: 'handlebars-loader',
-        query: {
+        options: {
           extensions: ['handlebars', 'hdbs', 'hbs'],
           runtime: 'handlebars'
         }
@@ -69,36 +55,26 @@ module.exports = {
     ]
   },
   resolveLoader: {
-    modulesDirectories: ['./lib/loaders', 'node_modules']
+    modules: ['./lib/loaders', 'node_modules']
   },
   resolve: {
-    modulesDirectories: ['node_modules', './lib/javascripts'],
+    modules: ['node_modules', './lib/javascripts'],
     alias: {
       'app_manifest': path.join(__dirname, './dist/manifest.json')
     },
-    extensions: ['', '.js']
+    extensions: ['.js']
   },
-  externalAssets: externalAssets,
   externals: {
     handlebars: 'Handlebars',
     zendesk_app_framework_sdk: 'ZAFClient'
   },
-  devtool: false,
   plugins: [
-    extractStyles,
+    new MiniCssExtractPlugin({ filename: 'main.css' }),
     new HtmlWebpackPlugin({
       warning: 'AUTOMATICALLY GENERATED FROM ./lib/templates/layout.hdbs - DO NOT MODIFY THIS FILE DIRECTLY',
       vendorCss: externalAssets.css,
       vendorJs: externalAssets.js,
-      template: '!!handlebars!./lib/templates/layout.hdbs'
+      template: '!!handlebars-loader!./lib/templates/layout.hdbs'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      comments: false,
-      compress: {
-        drop_debugger: false,
-        warnings: false,
-        drop_console: true
-      }
-    })
   ]
 };
