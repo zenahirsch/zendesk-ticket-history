@@ -2,6 +2,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const externalAssets = {
   css: [],
@@ -12,18 +13,28 @@ const externalAssets = {
 
 module.exports = {
   mode: 'production',
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false
+      })
+    ]
+  },
   entry: {
     app: ['./src/javascripts/index.js', './src/stylesheets/app.scss']
   },
   output: {
     path: path.resolve(__dirname, 'dist/assets'),
     filename: 'main.js',
+    clean: {
+      keep: /^(logo(-small)?\.png|screenshot-\d+\.png|spinner\.gif)$/
+    }
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'remove-glyphicon-svg-loader']
       },
       {
         test: /\.scss$/,
