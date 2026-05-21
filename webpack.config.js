@@ -13,7 +13,7 @@ const externalAssets = {
 module.exports = {
   mode: 'production',
   entry: {
-    app: ['./src/javascripts/index.js', './dist/tmp/app.css']
+    app: ['./src/javascripts/index.js', './src/stylesheets/app.scss']
   },
   output: {
     path: path.resolve(__dirname, 'dist/assets'),
@@ -24,6 +24,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },
       {
         test: /\.(woff2?|ttf|eot|svg)$/,
