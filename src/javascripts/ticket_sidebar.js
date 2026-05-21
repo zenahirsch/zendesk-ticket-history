@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import View from 'view';
 import Storage from 'storage';
 import { parseBool } from './settings';
@@ -134,8 +135,8 @@ class TicketSidebar {
 				let ticket = recent_tickets[i];
 
 				let formatted_ticket = {
-					created_at_relative: moment(ticket.created_at).fromNow(),
-					created_at_static: moment(ticket.created_at).format('LLL'),
+					created_at_relative: dayjs(ticket.created_at).fromNow(),
+					created_at_static: dayjs(ticket.created_at).format('LLL'),
 					created_at: ticket.created_at,
 					id: ticket.id,
 					truncated_subject: null,
@@ -190,9 +191,9 @@ class TicketSidebar {
 	sortTickets(tickets, field, direction) {
 		tickets.sort((a, b) => {
 			if (field === 'created_at') {
-				if (moment(a.created_at).isBefore(moment(b.created_at))) {
+				if (dayjs(a.created_at).isBefore(dayjs(b.created_at))) {
 					return direction === 'desc' ? 1 : -1;
-				} else if (moment(b.created_at).isBefore(moment(a.created_at))) {
+				} else if (dayjs(b.created_at).isBefore(dayjs(a.created_at))) {
 					return direction === 'desc' ? -1 : 1;
 				} else {
 					return 0;

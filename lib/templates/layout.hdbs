@@ -11,6 +11,8 @@
     <section data-main></section>
     <div id="footer" class="text-center small" style="margin-top:2em;">
       <a href="https://github.com/zenahirsch/zendesk-ticket-history/issues/new" target="_blank" rel="noopener noreferrer">Share Feedback</a>
+      <br />
+      App version: banana
     </div>
     {{#each htmlWebpackPlugin.options.vendorJs}}
       <script type="text/javascript" src="{{this}}"></script>

@@ -11,3 +11,4 @@ dist/zcli.apps.config.json
 dist/tmp/
 *.sublime-*
 .DS_Store
+PLAN.md
